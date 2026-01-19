@@ -1,7 +1,8 @@
 import app from "./app.js"
 import dotenv from "dotenv"
 import connectDB from "./config/db.config.js"
-import User from "./models/user.model.js"
+import userRoutes from "./routes/service.routes.js"
+import serviceRouter from "./routes/service.routes.js"
 
 dotenv.config({
     path : "./.env"
@@ -18,4 +19,4 @@ connectDB()
         process.exit(1)
     })
 
-    const user = User.create
+    app.use("/api/v1/services", serviceRouter)
