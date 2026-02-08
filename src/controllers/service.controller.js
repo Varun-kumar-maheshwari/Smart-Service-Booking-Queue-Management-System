@@ -18,3 +18,18 @@ export const getServiceResources = asyncHandler( async (req, res) => {
     .json(new ApiResponse(200, resources, "Resources are sent"))
 })
 
+export const registerService = asyncHandler(async(req, res) => {
+    const {name, openingTime , closingTime, description, type, slotDuration} = req.body || {}
+    const service =await Service.create({
+        name : name,
+        openingTime : openingTime ? openingTime : "9:00",
+        closingTime : closingTime ? closingTime : "19:00",
+        description : description ? description : "",
+        type : type ? type : "CAFE",
+        slotDuration : slotDuration ? slotDuration : 60
+    })
+
+    await service.save()
+    return res.status(200)
+    .json(new ApiResponse(200, [service], "nothing to show rn "))
+})

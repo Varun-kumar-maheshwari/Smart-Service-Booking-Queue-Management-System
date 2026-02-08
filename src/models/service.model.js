@@ -8,7 +8,6 @@ const serviceSchema = new Schema({
     description : String,
     type : {
         type : String,
-        enum : ["CAFE", "DOCTOR", "SALON"],
         default : "CAFE"
     },
     admin :{ 
@@ -17,11 +16,15 @@ const serviceSchema = new Schema({
     },
     openingTime : {
         type : String,
-        default : "09:00"
+        default : "09:00",
     },
     closingTime : {
         type : String,
         default : "19:00"
+    },
+    slotDuration : {
+        type : Number,
+        default : 60
     }
 }, {timestamps : true})
 
